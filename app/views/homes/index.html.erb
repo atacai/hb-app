@@ -1,0 +1,54 @@
+<% @conferences.each do |conference| %>
+<%= hidden_field_tag "conference_id", conference.id %>
+<div class="row">
+	<div class="col-md-12">
+		<div class="bgc-white p-20 bd">
+			<div class="d-flex">
+				<div class="mr-auto">
+		      <h3 class="c-grey-900"><%= conference.name %></h3>
+				</div>
+				<div class="ml-auto">
+					<%= select_tag "priority_configuration", options_from_collection_for_select(@priority_configs, "id", "name", conference.priority_configuration_id), class: "form-control d-inline-block", style: "width:73%;" %>
+					<button type="button" class="btn btn-primary" id="btn-priority-config">
+						<i class="ti-reload"></i> Change
+					</button>
+				</div>
+			</div>
+      <div class="mT-30">
+				<% conference.tracks.where(active: true).each do |track| %>
+					<h5 class="c-grey-900 mt-4"><%= track.name %></h5>
+					<% last_talk_end_time = nil %>
+					<% track.sessions.where(active: true).each do |session| %>
+						<h6 class="c-grey-900"><%= session.name %></h6>
+						<div class="pl-5">
+							<% session.talks.where(active: true).each do |talk| %>
+								<div class="row">
+									<div class="col-md-2"><%= talk.start_time.strftime("%H:%M") if talk.start_time %> - <%= talk.end_time.strftime("%H:%M") if talk.end_time %></div>
+									<div class="col-md-5"><%= talk.name %></div>
+									<div class="col-md-2 mr-auto"><%= talk.duration_minute %> minutes</div>
+								</div>
+								<% last_talk_end_time = talk.end_time %>
+								<!-- lunch -->
+								<% if (talk.end_time) && (talk.end_time.strftime("%H:%M") == '12:00') %>
+									<div class="row">
+										<div class="col-md-2">12:00 - 13:00</div>
+										<div class="col-md-5">Lunch</div>
+										<div class="col-md-2 mr-auto">60 minutes</div>
+									</div>
+								<% end %>
+							<% end %>
+						</div>
+					<% end %>
+					<!-- networking -->
+					<div class="pl-5">
+						<div class="row">
+							<div class="col-md-2"><%= last_talk_end_time.strftime("%H:%M") if last_talk_end_time %></div>
+							<div class="col-md-5 mr-auto">Networking Event</div>
+						</div>
+					</div>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>
+<% end %>

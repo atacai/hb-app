@@ -1,0 +1,42 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="bgc-white bd bdrs-3 p-20 mB-20">
+        <h4 class="c-grey-900 mB-20">Proposals</h4>
+        <div class="text-right mb-3">
+          <%= link_to new_proposal_path, class: "btn btn-primary" do %>
+            <i class="ti-plus"></i> Add New Proposal
+          <% end %>
+        </div>
+        <table id="dataTable" class="table table-striped table-bordered" cellspacing="0" width="100%">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Duration (minutes)</th>
+              <th>Conference</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+          	<% @proposals.each do |proposal| %>
+          		<tr>
+          			<td><%= proposal.name %></td>
+          			<td><%= proposal.duration_minute %></td>
+          			<td><%= proposal.conference.name %></td>
+                <td>
+                  <%= link_to edit_proposal_path(proposal.id), alt: "Edit" do %>
+                    <i class="c-orange-500 ti-pencil-alt"></i>
+                  <% end %>
+                  &nbsp;
+                  <%= link_to proposal_path(proposal.id), alt: "Delete",  method: :delete, data: { confirm: 'Are you sure want to do this ?' }  do %>
+                    <i class="c-red-500 ti-trash"></i>
+                  <% end %>
+                </td>
+          		</tr>
+          	<% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

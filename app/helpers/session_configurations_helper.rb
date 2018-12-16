@@ -1,0 +1,2 @@
+module SessionConfigurationsHelper
+end

@@ -1,0 +1,46 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="bgc-white bd bdrs-3 p-20 mB-20">
+        <h4 class="c-grey-900 mB-20">Conferences</h4>
+        <div class="text-right mb-3">
+          <%= link_to new_conference_path, class: "btn btn-primary" do %>
+            <i class="ti-plus"></i> Add New Conference
+          <% end %>
+        </div>
+        <table id="dataTable" class="table table-striped table-bordered" cellspacing="0" width="100%">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Created at</th>
+              <th>Updated at</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+          	<% @conferences.each do |conference| %>
+          		<tr>
+          			<td><%= conference.name %></td>
+          			<td><%= conference.created_at.strftime("%d %b %Y") if conference.created_at %></td>
+          			<td><%= conference.updated_at.strftime("%d %b %Y") if conference.updated_at %></td>
+                <td>
+                  <%= link_to root_path, alt: "Show details" do %>
+                    <i class="c-blue-500 ti-info-alt"></i>
+                  <% end %>
+                  &nbsp;
+                  <%= link_to edit_conference_path(conference.id), alt: "Edit" do %>
+                    <i class="c-orange-500 ti-pencil-alt"></i>
+                  <% end %>
+                  &nbsp;
+                  <%= link_to conference_path(conference.id), alt: "Delete",  method: :delete, data: { confirm: 'Are you sure want to do this ?' }  do %>
+                    <i class="c-red-500 ti-trash"></i>
+                  <% end %>
+                </td>
+          		</tr>
+          	<% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

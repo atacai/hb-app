@@ -1,0 +1,17 @@
+<div class="row gap-20 masonry pos-r">
+  <div class="masonry-sizer col-md-6"></div>
+  <div class="masonry-item col-md-6">
+    <div class="bgc-white p-20 bd">
+      <h6 class="c-grey-900">New Conference</h6>
+      <div class="mT-30">
+        <%= form_for @conference do |f| %>
+          <div class="form-group">
+            <%= f.label :name, t("title") %>
+            <%= f.text_field :name, :class => "form-control" %>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,33 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="bgc-white bd bdrs-3 p-20 mB-20">
+        <h4 class="c-grey-900 mB-20">Session Configurations</h4>
+        <table id="dataTable" class="table table-striped table-bordered" cellspacing="0" width="100%">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Start Time</th>
+              <th>End Time</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @configs.each do |config| %>
+              <tr>
+                <td><%= config.name %></td>
+                <td><%= config.start_time.strftime("%H:%M") if config.start_time %></td>
+                <td><%= config.end_time.strftime("%H:%M") if config.end_time %></td>
+                <td>
+                  <%= link_to edit_session_configuration_path(config.id), alt: "Edit" do %>
+                    <i class="c-orange-500 ti-pencil-alt"></i>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
