@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  start_time: 2018-12-12 23:14:57
+  end_time: 2018-12-12 23:14:57
+  session: one
+  proposal: one
+
+two:
+  start_time: 2018-12-12 23:14:57
+  end_time: 2018-12-12 23:14:57
+  session: two
+  proposal: two

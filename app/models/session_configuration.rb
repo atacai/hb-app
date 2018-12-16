@@ -1,0 +1,2 @@
+class SessionConfiguration < ApplicationRecord
+end
